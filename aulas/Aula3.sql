@@ -75,10 +75,7 @@ select q.tipo , q.valorDiaria , count(*) as 'Quantidade de estadias' from Quarto
 -- i) Mostre os nomes dos hóspedes que pagaram pelo quarto com maior valor de diária.
 select h.nome from Hospedes h, Estadias e, Quartos q
 	where h.CPF = e.hospede 
-	and q.valorDiaria= (select MAX(q2.valorDiaria) from quartos as q2)
-	
-select DISTINCT h.nome from Hospedes h, Estadias e, Quartos q
-	where h.CPF = e.hospede 
+	and e.quarto = q.numero
 	and q.valorDiaria= (select MAX(q2.valorDiaria) from quartos as q2)
 
 	
