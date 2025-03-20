@@ -76,10 +76,8 @@ select pr.nome , pr.venda, count(*) as 'Quantidade vendida', SUM(pr.venda) as 'S
 	
 -- l) Exibir o código do produto e a quantidade de pedidos feitos para os produtos que foram pedidos mais
 -- do que 30 vezes.
-select pr.codigo, COUNT(*) from Produto pr, Pedido pe, Itens i
-	where i.pedido = pe.codigo 
-	and i.produto = pr.codigo 
-	group by pr.codigo
+select i.produto, COUNT(*) from Itens i
+	group by i.produto 
 	having COUNT(*) > 30
 	
 
