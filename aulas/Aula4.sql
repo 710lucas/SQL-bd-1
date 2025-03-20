@@ -67,11 +67,11 @@ select f.nome, count(*) 'Vendas feitas'from Funcionario f, Pedido p
 -- k) Mostre o nome do produto, o seu valor de venda, a quantidade vendida e a soma dos preços de venda
 -- destes produtos comprados, que possuem quantidade em estoque entre 10 e 100 itens, apenas para
 -- os produtos cuja esta soma seja maior do que R$2000,00.
-select pr.nome , pr.venda, count(*) as 'Quantidade vendida', SUM(pr.venda) as 'Soma preços de venda'
+select pr.nome , pr.venda, count(*) as 'Quantidade vendida', SUM(pr.venda) as 'Soma preços de venda', pr.quantest 'Quantidade Estoque'
 	from Produto pr, Itens i 
 	where i.produto = pr.codigo 
 	and pr.quantest between 10 and 100
-	group by pr.nome, pr.venda, i.quant 
+	group by pr.nome, pr.venda, pr.quantest
 	having SUM(pr.venda) > 2000
 	
 -- l) Exibir o código do produto e a quantidade de pedidos feitos para os produtos que foram pedidos mais
@@ -82,8 +82,6 @@ select pr.codigo, COUNT(*) from Produto pr, Pedido pe, Itens i
 	group by pr.codigo
 	having COUNT(*) > 30
 	
-	
-select * from Produto p, Tipo t
-where p.
+
 	
 	
