@@ -22,11 +22,11 @@ select pr.* from Cliente c, Pedido pe, Produto pr, Itens i
 	and c.tipo = 'PJ'
 	
 -- f) Mostre os nomes e as cidades que nasceram os funcionários que realizaram pedidos de Liquidificador.
-select cl.nome, ci.nome from Cliente cl, Cidade ci, Pedido pe, Produto pr, Itens i
-	where pe.cliente = cl.codigo 
+select distinct f.nome, ci.nome from Funcionario f, Cidade ci, Pedido pe, Produto pr, Itens i
+	where pe.vendedor = f.codigo 
 	and i.pedido = pe.codigo 
 	and i.produto = pr.codigo 
-	and cl.cidade = ci.codigo
+	and f.naturalidade = ci.codigo
 	and pr.nome = 'Liquidificador'
 	
 -- g) Exiba nome e tipo dos clientes que foram atendidos por funcionários que NÃO moram no Bessa nem em
@@ -71,8 +71,8 @@ select pr.nome , pr.venda, count(*) as 'Quantidade vendida', SUM(pr.venda) as 'S
 	from Produto pr, Itens i 
 	where i.produto = pr.codigo 
 	and pr.quantest between 10 and 100
-	and pr.venda*i.quant > 2000
 	group by pr.nome, pr.venda, i.quant 
+	having SUM(pr.venda) > 2000
 	
 -- l) Exibir o código do produto e a quantidade de pedidos feitos para os produtos que foram pedidos mais
 -- do que 30 vezes.
@@ -81,5 +81,9 @@ select pr.codigo, COUNT(*) from Produto pr, Pedido pe, Itens i
 	and i.produto = pr.codigo 
 	group by pr.codigo
 	having COUNT(*) > 30
+	
+	
+select * from Produto p, Tipo t
+where p.
 	
 	
