@@ -29,6 +29,13 @@ select c.nome, pe.dataFatura from Cliente c
 	where pe.dataFatura between '01-01-2014' and '31-12-2014' 
 	or pe.dataFatura between '01-01-2016' and '31-12-2016'
 
+
+select c.nome, pe.dataFatura from Cliente c
+	join Pedido pe on pe.cliente = c.codigo
+	where year(pe.dataPedido) in (2014)
+	or year(pe.dataPedido) in (2016)
+
+
 -- f) Exiba os nomes das cidades que possuem clientes que realizaram pedidos em 2023. (sub-consulta
 -- obrigatória)
 select ci.nome from Cidade ci
@@ -54,4 +61,7 @@ select pe.dataFatura, i.preco from Pedido pe
 -- preços de vendas dos produtos.
 select distinct pr.nome from Produto pr
 	join Itens i on i.produto = pr.codigo
-	where i.preco > (select AVG(preco) from Itens)
+	where pr.venda > (select AVG(venda) from Produto)
+
+select distinct pr.nome from Produto pr
+	where pr.venda > (select AVG(venda) from Produto)
