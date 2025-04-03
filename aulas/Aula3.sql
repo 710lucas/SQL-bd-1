@@ -1,5 +1,9 @@
 use Hotel
 
+select * from Hospedes h ;
+update Hospedes set nome = 'John Smith 2' where cpf = '12345678901'
+
+
 -- Mostre os nomes dos hóspedes e a descrição dos serviços solicitados, para cada hóspede que
 --solicitou serviço no segundo semestre de 2023.
 
